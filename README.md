@@ -27,19 +27,19 @@ $starline->setConfig($config);
 
 ```php
 //Пример получения кода приложения.
-$code = $starline->fetchCode();
+$code = $starLine->fetchCode();
 
 //Пример получения token ключа.
-$token = $starline->fetchToken($code);
+$token = $starLine->fetchToken($code);
 
 //Авторизация пользователя.
-$user_token = $starline->fetchUserToken($token);
+$user_token = $starLine->fetchUserToken($token);
 
 //Пример получения SLNET token ключа.
-[$slnet, $user_id] = $starline->fetchSLNETToken($user_token);
+[$slnet, $user_id] = $starLine->fetchSLNETToken($user_token);
 
 //Пример получения существующих устройств пользователя.
-$devices = $starline->fetchDevicesInfo($slnet, $user_token, $user_id);
+$devices = $starLine->fetchDevicesInfo($slnet, $user_token, $user_id);
 echo '<pre>';
 print_r($devices);
 echo '</pre>';
@@ -48,7 +48,7 @@ echo '</pre>';
 $device_id = $devices['user_data']['devices'][0]['device_id'] ?? '';
 
 //Пример выполнения запроса к устройству.
-$response = $starline->runQuery($slnet, $device_id, [
+$response = $starLine->runQuery($slnet, $device_id, [
     'type' => 'arm',//тип "охраны устройства"
     'arm' => 1,//постановка на охрану
 ]);
