@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 //Настройки доступа из https://my.starline.ru/developer.
 $config = (new \Starline\Config())

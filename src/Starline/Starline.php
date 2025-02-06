@@ -94,9 +94,14 @@ class Starline {
         if (!$this->checkResponse($response, $content, __METHOD__)) {
             return [];
         }
-        $object = json_decode($content, true);
-        $code = (string)$object['code'] ?? '';
-        $user_id = (string)$object['user_id'] ?? '';
+        try {
+            $object = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\Throwable $t) {
+            return [];
+        }
+
+        $code = isset($object['code']) ? (string)$object['code'] : '';
+        $user_id = isset($object['user_id']) ? (string)$object['user_id'] : '';
         if (empty($code) || $code !== "200" || empty($user_id)) {
             $this->logError('Error response', ['method' => __METHOD__, 'response_object' => $object]);
             return [];
@@ -283,8 +288,12 @@ class Starline {
         ]);
     }
 
-    protected function getClient(): Client {
-        return new Client(['timeout'  => static::GUZZLE_TIMEOUT_SECONDS]);
+    protected function getClient(): Client
+    {
+        return new Client(
+            ['timeout'  => static::GUZZLE_TIMEOUT_SECONDS,
+             'verify' => false
+             ]);
     }
 
     /**
