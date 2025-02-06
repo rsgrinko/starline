@@ -3,10 +3,10 @@
 
     // Настройки доступа из https://my.starline.ru/developer.
     $config = (new \Starline\Config())
-        ->setLogin('login')          //логин пользователя.
-        ->setPassword('password') //пароль пользователя.
-        ->setAppId('app id')        //идентификатор приложения.
-        ->setSecret('secret key');  //ключ доступа к приложению.
+        ->setLogin('login')           //логин пользователя.
+        ->setPassword('password')  //пароль пользователя.
+        ->setAppId('app id')         //идентификатор приложения.
+        ->setSecret('secret key');   //ключ доступа к приложению.
 
     $starLine = new \Starline\Starline();
     $starLine->setConfig($config);
