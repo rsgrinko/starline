@@ -44,26 +44,26 @@
     if (empty($slnetData)) {
         die('Не удалось получить slnet токен');
     }
-    [$slnet, $user_id] = $slnetData;
+    [$slnet, $userId] = $slnetData;
 
     // Пример получения существующих устройств пользователя.
     $devices = [];
     try {
-        $devices = $starLine->fetchDevicesInfo($slnet, $userToken, $user_id);
+        $devices = $starLine->fetchDevicesInfo($slnet, $userToken, $userId);
     } catch (Throwable $e) {
         echo 'Не удалось получить slnet токен' . PHP_EOL;
     }
     echo '<pre>' . print_r($devices, true) . '</pre>';
 
     // Пример получения device_id, выберите нужное устройство из массива $devices['user_data']['devices']
-    $device_id = $devices['user_data']['devices'][0]['device_id'] ?? '';
+    $deviceId = $devices['user_data']['devices'][0]['device_id'] ?? '';
 
     // Пример выполнения запроса к устройству.
     $response = [];
     try {
         $response = $starLine->runQuery(
             $slnet,
-            $device_id,
+            $deviceId,
             [
                 'type' => 'arm',// Тип команды: охрана устройства
                 'arm'  => 1,    // Свойство: Включено
