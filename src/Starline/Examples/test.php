@@ -28,7 +28,7 @@
 
     // Авторизация пользователя.
     try {
-        $user_token = $starLine->fetchUserToken($token);
+        $userToken = $starLine->fetchUserToken($token);
     } catch (Throwable $e) {
         die('Не удалось произвести авторизацию');
     }
@@ -36,7 +36,7 @@
     // Пример получения SLNET token ключа.
 
     try {
-        $slnetData = $starLine->fetchSLNETToken($user_token);
+        $slnetData = $starLine->fetchSLNETToken($userToken);
     } catch (Throwable $e) {
         die('Не удалось получить slnet токен');
     }
@@ -49,7 +49,7 @@
     // Пример получения существующих устройств пользователя.
     $devices = [];
     try {
-        $devices = $starLine->fetchDevicesInfo($slnet, $user_token, $user_id);
+        $devices = $starLine->fetchDevicesInfo($slnet, $userToken, $user_id);
     } catch (Throwable $e) {
         echo 'Не удалось получить slnet токен' . PHP_EOL;
     }
