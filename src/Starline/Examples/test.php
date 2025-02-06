@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 //Настройки доступа из https://my.starline.ru/developer.
 $config = (new \Starline\Config())
@@ -34,10 +34,10 @@ echo '</pre>';
 $device_id = $devices['user_data']['devices'][0]['device_id'] ?? '';
 
 //Пример выполнения запроса к устройству.
-$response = $starline->runQuery($slnet, $device_id, [
+/*$response = $starline->runQuery($slnet, $device_id, [
     'type' => 'arm',//тип "охраны устройства"
     'arm' => 1,//постановка на охрану
-]);
+]);*/
 echo '<pre>';
 print_r($response);
 echo '</pre>';
